@@ -1,6 +1,6 @@
 {
-  "name": "Expense Tracker",
-  "short_name": "Expenses",
+  "name": "Split Money",
+  "short_name": "Split Money",
   "description": "Track and split expenses with your roommates.",
   "start_url": "./",
   "display": "standalone",
