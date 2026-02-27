@@ -1,0 +1,18 @@
+<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Minimalist aesthetic icon -->
+  <!-- Dark background -->
+  <rect width="512" height="512" fill="#0d1117" rx="100"/>
+  <!-- Primary gradient blob -->
+  <circle cx="256" cy="256" r="180" fill="url(#grad1)" opacity="0.9"/>
+  <!-- Wallet icon / dollar symbol styling -->
+  <path d="M180 320 H330 a 20 20 0 0 0 20 -20 V200 a 20 20 0 0 0 -20 -20 H180 a 20 20 0 0 0 -20 20 V300 a 20 20 0 0 0 20 20 Z" fill="rgba(33, 38, 45, 0.8)" stroke="#ffffff" stroke-width="8" />
+  
+  <text x="256" y="278" font-family="'Inter', sans-serif" font-size="100" font-weight="bold" fill="#f0f6fc" text-anchor="middle">$</text>
+  
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8a2be2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>
