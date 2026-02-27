@@ -382,15 +382,52 @@ function renderBalances() {
         return;
     }
     
-    settlements.forEach(settlement => {
+    settlements.forEach((settlement, index) => {
         const item = document.createElement('div');
         item.className = 'balance-item';
+        // HTML includes a Settle button calling handleSettleUp dynamically
         item.innerHTML = `
-            <span class="balance-text"><strong>${settlement.from}</strong> owes <strong>${settlement.to}</strong></span>
-            <span class="amount-owe">$${settlement.amount.toFixed(2)}</span>
+            <div style="flex: 1;">
+                <span class="balance-text"><strong>${settlement.from}</strong> owes <strong>${settlement.to}</strong></span>
+                <span class="amount-owe">$${settlement.amount.toFixed(2)}</span>
+            </div>
+            <button class="btn btn-secondary settle-btn" onclick="handleSettleUp('${settlement.from}', '${settlement.to}', ${settlement.amount})">
+                Settle
+            </button>
         `;
         balancesListDiv.appendChild(item);
     });
+}
+
+function handleSettleUp(debtor, creditor, maxAmount) {
+    const inputAmount = prompt(`How much is ${debtor} paying ${creditor} right now? (Max: $${maxAmount.toFixed(2)})`, maxAmount.toFixed(2));
+    
+    // Validate input
+    if (inputAmount === null) return; // User cancelled prompt
+    
+    const amount = parseFloat(inputAmount);
+    if (isNaN(amount) || amount <= 0) {
+        alert("Please enter a valid positive amount.");
+        return;
+    }
+    if (amount > maxAmount + 0.01) { // Adding small float tolerance
+        alert(`You can't settle more than the owed amount ($${maxAmount.toFixed(2)}).`);
+        return;
+    }
+
+    // Create a repayment expense to mathematically offset the debt
+    const expense = {
+        id: Date.now().toString(),
+        title: `Repayment to ${creditor}`, // Simple tracking description
+        amount: amount,
+        payer: debtor,     // Debtower pays...
+        splits: [creditor], // ...exclusively to the Creditor (creditor owes the debtor back exactly what they just got, zeroing it out)
+        date: new Date().toLocaleDateString()
+    };
+    
+    expenses.unshift(expense); 
+    saveGroupData();
+    renderGroupDetailView();
 }
 
 // Register Service Worker

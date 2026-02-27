@@ -391,6 +391,7 @@ input:focus, select:focus {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 12px;
     animation: slideIn 0.3s ease;
 }
 
@@ -400,6 +401,8 @@ input:focus, select:focus {
 
 .balance-text {
     font-size: 1rem;
+    display: block;
+    margin-bottom: 4px;
 }
 
 .amount-owe {
@@ -409,6 +412,13 @@ input:focus, select:focus {
     background: rgba(255, 107, 107, 0.1);
     padding: 4px 10px;
     border-radius: 8px;
+    display: inline-block;
+}
+
+.settle-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    flex-shrink: 0;
 }
 
 @keyframes fadeIn {
